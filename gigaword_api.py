@@ -29,6 +29,8 @@ class Gigaword:
             return None
         else:
             with gzip.open(os.path.join(self.path,corpus,self.documents[corpus][index]),'rb') as f:
-                tree = etree.parse(f)
-                print(tree.getroot())
+                xml = '<root> \n' +  f.read() + '\n </root>'
+
+            tree = etree.fromstring(xml)
+            print(tree.getroot())
                 
