@@ -32,5 +32,5 @@ class Gigaword:
                 xml = '<root>' +  f.read() + '</root>'
 
             tree = etree.fromstring(xml)
-            print(tree.getroot())
+            print(tree.getchildren())
                 
