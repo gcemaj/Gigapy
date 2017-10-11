@@ -3,7 +3,7 @@ This is an API to more easily interact with the gigaword dataset
 '''
 
 import os
-import tarfile
+import gzip
 
 class Gigaword:
 
@@ -27,8 +27,6 @@ class Gigaword:
         if index > len(self.documents[corpus]) : 
             return None
         else:
-            with tarfile.open(os.path.join(self.path,corpus,self.documents[corpus][index])) as tf:
-                for entry in tf:  # list each entry one by one
-                    fileobj = tf.extractfile(entry)
-                    for i in fileobj:
-                        print(i)
+            with gzip.open(os.path.join(self.path,corpus,self.documents[corpus][index]),'rb') as f:
+                for i in f:
+                    print(i)
