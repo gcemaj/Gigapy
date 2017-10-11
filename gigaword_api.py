@@ -28,5 +28,4 @@ class Gigaword:
             return None
         else:
             with gzip.open(os.path.join(self.path,corpus,self.documents[corpus][index]),'rb') as f:
-                for i in f:
-                    print(i)
+                print(f[:100])
