@@ -1,7 +1,7 @@
 from gigaword_api import Gigaword
 
 def main():
-    giga = Gigaword('../Corpus')
+    giga = Gigaword('/home/rldata/gigaqord/data')
     print(giga.corpora)
     print(giga.documents)
     giga.getFile(giga.corpora[0],0)

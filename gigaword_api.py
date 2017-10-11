@@ -4,6 +4,7 @@ This is an API to more easily interact with the gigaword dataset
 
 import os
 import gzip
+import xml.etree.ElementTree as etree 
 
 class Gigaword:
 
@@ -28,4 +29,6 @@ class Gigaword:
             return None
         else:
             with gzip.open(os.path.join(self.path,corpus,self.documents[corpus][index]),'rb') as f:
-                print(f[:100])
+                tree = etree.parse(f)
+                print(tree.getroot())
+                
