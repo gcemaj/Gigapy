@@ -1,3 +1,7 @@
+import nltk.data
+
+sentenceTkzr = nltk.data.load('tokenizers/punkt/english.pickle')
+
 class GigaDoc:
 
     def __init__(self,doc):
@@ -11,10 +15,11 @@ class GigaDoc:
 
     def parse(self):
         self.id = self.doc.attrib['id'] if 'id' in  self.doc.attrib else ''
-        print(self.parseByTagName('HEADLINE'))
-        print(self.parseByTagName('DATELINE'))
-        print(self.parseByTagName('TEXT'))
-        print(self.parseText())
+        self.headline = self.parseByTagName('HEADLINE')
+        self.dateline = self.parseByTagName('DATELINE')
+        self.text = self.parseText()
+        self.sentences = self.parseSentences()
+        print(self.sentences)
 
     def parseByTagName(self,name):
         result = ''
@@ -27,9 +32,11 @@ class GigaDoc:
 
     def parseText(self):
         temp = self.parseByTagName('TEXT')
-        print('POOP',self.parseByTagName('P'))
-        print('FUCK',temp,len(temp))
         return self.parseByTagName('P') if temp == '' else temp
+
+    def parseSentences(self):
+        return sent_detector.tokenize(self.text)
+
 
 
     
