@@ -28,7 +28,7 @@ class Gigaword:
     
     def loadDocuments(self):
         documents = {}
-        for i in self.corpora:
+        for i in self.corpora[:2]:
             documents[i] = self.loadDocumentsByCorpus(i)
         return documents
 
@@ -38,7 +38,6 @@ class Gigaword:
         for doc in self.documentNames[corpus]:
             with gzip.open(os.path.join(self.path,corpus,doc),'rb') as f:
                 xml = '<root>' +  f.read() + '</root>'
-
             tree = etree.fromstring(xml)
             for i in tree.getchildren():   
                 result.append(GigaDoc(i))
