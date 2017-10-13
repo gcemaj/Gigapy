@@ -34,18 +34,15 @@ class Gigaword:
 
 
     def loadDocumentsByCorpus(self,corpus):
-        if index > len(self.documentNames[corpus]) : 
-            return None
-        else:
-            result = []
-            for index in self.documentNames[corpus]:
-                with gzip.open(os.path.join(self.path,corpus,self.documentNames[corpus][index]),'rb') as f:
-                    xml = '<root>' +  f.read() + '</root>'
+        result = []
+        for index in self.documentNames[corpus]:
+            with gzip.open(os.path.join(self.path,corpus,self.documentNames[corpus][index]),'rb') as f:
+                xml = '<root>' +  f.read() + '</root>'
 
-                tree = etree.fromstring(xml)
-                for i in tree.getchildren():   
-                    result.append(GigaDoc(temp))
-            return result    
+            tree = etree.fromstring(xml)
+            for i in tree.getchildren():   
+                result.append(GigaDoc(temp))
+        return result    
 
 
     def getFile(self,corpus,index):
