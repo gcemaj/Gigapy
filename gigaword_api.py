@@ -41,7 +41,7 @@ class Gigaword:
 
             tree = etree.fromstring(xml)
             for i in tree.getchildren():   
-                result.append(GigaDoc(temp))
+                result.append(GigaDoc(i))
         return result    
 
 
