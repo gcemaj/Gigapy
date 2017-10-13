@@ -40,7 +40,7 @@ class GigaDoc:
         return self.parseByTagName('P') if temp == '' else temp
 
     def parseSentences(self):
-        return sent_detector.tokenize(self.text)
+        return sentenceTkzr.tokenize(self.text)
 
 
 
