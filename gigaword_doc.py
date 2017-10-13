@@ -16,10 +16,11 @@ class GigaDoc:
         print(self.parseByTagName('TEXT'))
 
     def parseByTagName(self,name):
-        return = ''
+        result = ''
         for i in root.iter(name):
-            return  += i.text
+            result  += i.text
 
+        return result
 
 
     
