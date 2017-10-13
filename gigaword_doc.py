@@ -14,6 +14,7 @@ class GigaDoc:
         print(self.parseByTagName('HEADLINE'))
         print(self.parseByTagName('DATELINE'))
         print(self.parseByTagName('TEXT'))
+        print(self.parseText())
 
     def parseByTagName(self,name):
         result = ''
@@ -21,6 +22,10 @@ class GigaDoc:
             result  += i.text
 
         return result
+
+    def parseText(self):
+        temp = self.parseByTagName('TEXT')
+        return self.parseByTagName('P') if temp == 0 else temp
 
 
     
