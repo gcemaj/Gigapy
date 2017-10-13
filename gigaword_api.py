@@ -39,7 +39,9 @@ class Gigaword:
             with gzip.open(os.path.join(self.path,corpus,doc),'rb') as f:
                 xml = '<root>' +  f.read() + '</root>'
             tree = etree.fromstring(xml)
-            for i in tree.getchildren():   
+            for i in tree.getchildren():  
+                a = GigaDoc(i)
+                print(a.id)
                 result.append(GigaDoc(i))
         return result    
 
