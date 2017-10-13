@@ -5,6 +5,7 @@ This is an API to more easily interact with the gigaword dataset
 import os
 import gzip
 import xml.etree.ElementTree as etree 
+from gigaword_doc import GigaDoc
 
 class Gigaword:
 
@@ -32,5 +33,5 @@ class Gigaword:
                 xml = '<root>' +  f.read() + '</root>'
 
             tree = etree.fromstring(xml)
-            print(tree.getchildren())
-                
+            temp = tree.getchildren()[0]      
+            doc = GigaDoc(temp)         
