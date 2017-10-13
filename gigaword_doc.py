@@ -25,6 +25,7 @@ class GigaDoc:
 
     def parseText(self):
         temp = self.parseByTagName('TEXT')
+        print('POOP',self.parseByTagName('P'))
         return self.parseByTagName('P') if temp == '' else temp
 
 
