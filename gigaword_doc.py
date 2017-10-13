@@ -21,7 +21,9 @@ class GigaDoc:
         for i in self.doc.iter(name):
             result  += i.text
 
-        return result
+        result = result.replace('\n',' ')
+        result = result.strip()
+        return 
 
     def parseText(self):
         temp = self.parseByTagName('TEXT')
