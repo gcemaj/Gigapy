@@ -24,7 +24,6 @@ class GigaDoc:
         self.dateline = self.parseByTagName('DATELINE')
         self.text = self.parseText()
         self.sentences = self.parseSentences()
-        print(self.sentences)
 
     def parseByTagName(self,name):
         result = ''

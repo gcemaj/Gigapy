@@ -13,9 +13,10 @@ class Gigaword:
         # Path to data
         self.path = path
         self.corpora = self.getCorpora()
-        self.documents = self.getDocuments()
+        self.documentNames = self.getDocumentNames()
+        self.documentsByCorpora = self.loadDocuments()
 
-    def getDocuments(self):
+    def getDocumentNames(self):
         documents = {i:[] for i in self.corpora}
         for i in self.corpora:
             documents[i] += [name for name in os.listdir(os.path.join(self.path,i)) if os.path.isfile(os.path.join(self.path, i ,name))]
@@ -25,13 +26,35 @@ class Gigaword:
         return [name for name in os.listdir(self.path) if os.path.isdir(os.path.join(self.path, name))]
 
     
-    def getFile(self,corpus,index):
-        if index > len(self.documents[corpus]) : 
+    def loadDocuments(self):
+        douments = {}
+        for i in self.corpora:
+            documents[i] = self.loadDocumentsByCorpus(i)
+        return documents
+
+
+    def loadDocumentsByCorpus(self,corpus):
+        if index > len(self.documentNames[corpus]) : 
             return None
         else:
-            with gzip.open(os.path.join(self.path,corpus,self.documents[corpus][index]),'rb') as f:
+            result = []
+            for index in self.documentNames[corpus]:
+                with gzip.open(os.path.join(self.path,corpus,self.documentNames[corpus][index]),'rb') as f:
+                    xml = '<root>' +  f.read() + '</root>'
+
+                tree = etree.fromstring(xml)
+                for i in tree.getchildren()      
+                    result.append(GigaDoc(temp))
+            return result    
+
+
+    def getFile(self,corpus,index):
+        if index > len(self.documentNames[corpus]) : 
+            return None
+        else:
+            with gzip.open(os.path.join(self.path,corpus,self.documentNames[corpus][index]),'rb') as f:
                 xml = '<root>' +  f.read() + '</root>'
 
             tree = etree.fromstring(xml)
-            temp = tree.getchildren()[0]      
+            temp = tree.getchildren()      
             doc = GigaDoc(temp)         
