@@ -43,7 +43,7 @@ class Gigaword:
                     xml = '<root>' +  f.read() + '</root>'
 
                 tree = etree.fromstring(xml)
-                for i in tree.getchildren()      
+                for i in tree.getchildren():   
                     result.append(GigaDoc(temp))
             return result    
 
