@@ -23,7 +23,7 @@ class GigaDoc:
 
         result = result.replace('\n',' ')
         result = result.strip()
-        return 
+        return result
 
     def parseText(self):
         temp = self.parseByTagName('TEXT')
