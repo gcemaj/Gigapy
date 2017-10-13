@@ -27,7 +27,7 @@ class Gigaword:
 
     
     def loadDocuments(self):
-        douments = {}
+        documents = {}
         for i in self.corpora:
             documents[i] = self.loadDocumentsByCorpus(i)
         return documents
