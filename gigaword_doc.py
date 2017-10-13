@@ -17,7 +17,7 @@ class GigaDoc:
 
     def parseByTagName(self,name):
         result = ''
-        for i in root.iter(name):
+        for i in self.doc.iter(name):
             result  += i.text
 
         return result
