@@ -13,18 +13,21 @@ class Gigaword:
         # Path to data
         self.path = path
         self.corpora = self.getCorpora()
-        self.documentNames = self.getDocumentNames()
+        self.documentNames,self.allDocsNum = self.getDocumentNames()
         print(self.documentNames)
+        print(self.allDocsNum)
 
     def getDocumentNames(self):
         documents = {i:(0,[]) for i in self.corpora}
+        totalDocuments = 0
         for i in self.corpora:
             tempSize = documents[i][0] 
             tempList = documents[i][1] 
             tempList += [name for name in os.listdir(os.path.join(self.path,i)) if os.path.isfile(os.path.join(self.path, i ,name))]
             tempSize += len(tempList)
             documents[i] = (tempSize,tempList)
-        return documents
+            totalDocuments += tempSize
+        return documents,totalDocuments
 
     def getCorpora(self):
         return [name for name in os.listdir(self.path) if os.path.isdir(os.path.join(self.path, name))]
