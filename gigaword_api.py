@@ -5,6 +5,7 @@ This is an API to more easily interact with the gigaword dataset
 import os
 import gzip
 import xml.etree.ElementTree as etree 
+import random
 from gigaword_doc import GigaDoc
 
 class Gigaword:
@@ -37,16 +38,46 @@ class Gigaword:
             documents[i] = self.loadDocumentsByCorpus(i)
         return documents
 
-    def getKSentences(self,distribution,k):
-        numberTrain = int(distribution[0]*k)
-        numberVal = int(distribution[1]*k)
-        numberTest = k - numberVal - numberTrain
+    def getSentencesFromKDocs(self,distribution,k):
+        
+        trainSentences = []
+        valSentences = []
+        testSentences = []
+
         percentOfAllDocs = float(k)/float(self.allDocsNum)
         for i in self.corpora:
             corpusSize, corpusNames = self.documentNames[i]
             numFromCorpus = int(corpusSize * percentOfAllDocs)
-            
-            print(numFromCorpus,corpusSize,percentOfAllDocs)
+            randomNames = random.shuffle(corpusNames)
+            counter = 0
+            index = 0
+            while counter < numFromCorpus:
+                doc = randomNames[index]
+                with gzip.open(os.path.join(self.path,i,doc),'rb') as f:
+                xml = '<root>' +  f.read() + '</root>'
+                try:
+                    tree = etree.fromstring(xml)
+                    counter += 1
+                    for i in tree.getchildren():  
+                        gigaDoc = GigaDoc(i)
+                        sentncesSize = len(gigaDoc.sentences)
+
+                        numberTrain = int(distribution[0]*sentncesSize)
+                        numberVal = int(distribution[1]*sentncesSize)
+                        numberTest = sentncesSize - numberVal - numberTrain
+
+                        randomSentences = random.shuffle(gigaDoc.sentences)
+
+                        trainSentences += randomSentences[:numberTrain]
+                        valSentences += randomSentences[numberTrain:numberTrain+numberVal]
+                        testSentences += randomSentences[numberTrain+numberVal:numberTrain+numberVal+numberTest]
+                        
+                except:
+                    print('fuck')
+                    index += 1
+                    continue
+
+            print(trainSentences,valSentences,testSentences)
 
         pass
 
