@@ -48,7 +48,7 @@ class Gigaword:
 
             
             print(numFromCorpus)
-            print('CRAP', float(k/self.allDocsNum))
+            print('CRAP', float(k)/float(self.allDocsNum))
 
         pass
 
