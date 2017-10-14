@@ -80,10 +80,7 @@ class Gigaword:
                     index += 1
                     continue
 
-            print(trainSentences,valSentences,testSentences)
-
-        pass
-
+        return trainSentences,valSentences,testSentences
     
     def loadDocumentsByCorpus(self,corpus):
         result = []
