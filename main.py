@@ -8,7 +8,7 @@ def printToFile(name,sentences):
 
 def main():
     giga = Gigaword('/home/rldata/gigaword/data')
-    sentences = giga.getSentencesFromKDocs((0.7,0.2,0.1),200)
+    sentences = giga.getSentencesFromKDocs((0.7,0.2,0.1),10)
     printToFile('./trainGigaEnglish.text',sentences[0])
     printToFile('./valGigaEnglish.text',sentences[1])
     printToFile('./testGigaEnglish.text',sentences[2])
