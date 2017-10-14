@@ -48,7 +48,8 @@ class Gigaword:
         for i in self.corpora:
             corpusSize, corpusNames = self.documentNames[i]
             numFromCorpus = int(corpusSize * percentOfAllDocs)
-            randomNames = random.shuffle(corpusNames)
+            randomNames = list(corpusNames)
+            random.shuffle(randomNames)
             counter = 0
             index = 0
             while counter < numFromCorpus:
@@ -66,7 +67,8 @@ class Gigaword:
                         numberVal = int(distribution[1]*sentncesSize)
                         numberTest = sentncesSize - numberVal - numberTrain
 
-                        randomSentences = random.shuffle(gigaDoc.sentences)
+                        randomSentences = list(gigaDoc.sentences)
+                        random.shuffle(randomSentences)
 
                         trainSentences += randomSentences[:numberTrain]
                         valSentences += randomSentences[numberTrain:numberTrain+numberVal]
