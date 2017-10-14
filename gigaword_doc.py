@@ -31,6 +31,7 @@ class GigaDoc:
             result  += i.text
 
         result = result.replace('\n',' ')
+        result = result.replace('\r','')
         result = result.strip()
         return result
 
