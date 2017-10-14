@@ -14,8 +14,6 @@ class Gigaword:
         self.path = path
         self.corpora = self.getCorpora()
         self.documentNames,self.allDocsNum = self.getDocumentNames()
-        print(self.documentNames)
-        print(self.allDocsNum)
 
     def getDocumentNames(self):
         documents = {i:(0,[]) for i in self.corpora}
@@ -43,7 +41,11 @@ class Gigaword:
         numberTrain = int(distribution[0]*k)
         numberVal = int(distribution[1]*k)
         numberTest = k - numberVal - numberTrain
-        print(numberTest)
+        for i in self.corpora:
+            corpusSize, corpusNames = self.documentNames[i]
+            percentFromCorpus = corpusSize * self.allDocsNum
+            print(percentFromCorpus)
+
         pass
 
     
