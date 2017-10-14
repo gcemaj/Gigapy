@@ -19,8 +19,11 @@ class Gigaword:
     def getDocumentNames(self):
         documents = {i:(0,[]) for i in self.corpora}
         for i in self.corpora:
-            documents[i][1] += [name for name in os.listdir(os.path.join(self.path,i)) if os.path.isfile(os.path.join(self.path, i ,name))]
-            documents[i][0] += len(documents[i][1])
+            tempSize = documents[i][0] 
+            tempList = documents[i][1] 
+            tempList += [name for name in os.listdir(os.path.join(self.path,i)) if os.path.isfile(os.path.join(self.path, i ,name))]
+            tempSize += len(tempList)
+            documents[i] = (tempSize,tempList)
         return documents
 
     def getCorpora(self):
