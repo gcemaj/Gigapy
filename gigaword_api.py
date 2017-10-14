@@ -40,7 +40,9 @@ class Gigaword:
         return documents
 
     def getKSentences(self,distribution,k):
-        (numberTrain,numberVal,numberTest) = distribution * k
+        numberTrain = int(distribution[0]*k)
+        numberVal = int(distribution[1]*k)
+        numberTest = k - numberVal - numberTrain
         print(numberTest)
         pass
 
