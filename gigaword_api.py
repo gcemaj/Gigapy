@@ -43,7 +43,7 @@ class Gigaword:
         numberTest = k - numberVal - numberTrain
         for i in self.corpora:
             corpusSize, corpusNames = self.documentNames[i]
-            percentFromCorpus = corpusSize / self.allDocsNum
+            percentFromCorpus = float(corpusSize) / float(self.allDocsNum)
             print(percentFromCorpus)
 
         pass
