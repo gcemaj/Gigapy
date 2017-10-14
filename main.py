@@ -1,7 +1,8 @@
 from gigaword_api import Gigaword
+import codecs
 
 def printToFile(name,sentences):
-    with open(name, "w",encoding='utf-8') as file:
+    with codecs.open(name, "w",encoding='utf-8') as file:
         file.writelines( "%s\n" % item for item in sentences )
 
 def main():
