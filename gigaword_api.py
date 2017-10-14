@@ -54,14 +54,12 @@ class Gigaword:
             index = 0
             while counter < numFromCorpus:
                 doc = randomNames[index]
-                print(doc)
-                print(os.path.join(self.path,i,doc))
                 with gzip.open(os.path.join(self.path,i,doc),'rb') as f:
                     xml = '<root>' +  f.read() + '</root>'
                 try:
                     tree = etree.fromstring(xml)
-                    for i in tree.getchildren():  
-                        gigaDoc = GigaDoc(i)
+                    for j in tree.getchildren():  
+                        gigaDoc = GigaDoc(j)
                         sentncesSize = len(gigaDoc.sentences)
 
                         numberTrain = int(distribution[0]*sentncesSize)
