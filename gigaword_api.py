@@ -54,7 +54,7 @@ class Gigaword:
             while counter < numFromCorpus:
                 doc = randomNames[index]
                 with gzip.open(os.path.join(self.path,i,doc),'rb') as f:
-                xml = '<root>' +  f.read() + '</root>'
+                    xml = '<root>' +  f.read() + '</root>'
                 try:
                     tree = etree.fromstring(xml)
                     counter += 1
