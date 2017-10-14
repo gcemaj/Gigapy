@@ -39,9 +39,9 @@ class Gigaword:
             documents[i] = self.loadDocumentsByCorpus(i)
         return documents
 
-
-
-    def getKSentences(distribution,k):
+    def getKSentences(self,distribution,k):
+        (numberTrain,numberVal,numberTest) = distribution * k
+        print(numberTest)
         pass
 
     
