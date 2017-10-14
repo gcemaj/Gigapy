@@ -48,6 +48,7 @@ class Gigaword:
 
             
             print(numFromCorpus)
+            print('CRAP', float(k/self.allDocsNum))
 
         pass
 
