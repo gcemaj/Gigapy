@@ -14,12 +14,13 @@ class Gigaword:
         self.path = path
         self.corpora = self.getCorpora()
         self.documentNames = self.getDocumentNames()
-        self.documentsByCorpora = self.loadDocuments()
+        print(self.documentNames)
 
     def getDocumentNames(self):
-        documents = {i:[] for i in self.corpora}
+        documents = {i:(0,[]) for i in self.corpora}
         for i in self.corpora:
-            documents[i] += [name for name in os.listdir(os.path.join(self.path,i)) if os.path.isfile(os.path.join(self.path, i ,name))]
+            documents[i][1] += [name for name in os.listdir(os.path.join(self.path,i)) if os.path.isfile(os.path.join(self.path, i ,name))]
+            documents[i][0] += len(documents[i][1])
         return documents
 
     def getCorpora(self):
@@ -33,6 +34,11 @@ class Gigaword:
         return documents
 
 
+
+    def getKSentences(distribution,k):
+        pass
+
+    
     def loadDocumentsByCorpus(self,corpus):
         result = []
         for doc in self.documentNames[corpus]:
