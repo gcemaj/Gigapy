@@ -41,14 +41,12 @@ class Gigaword:
         numberTrain = int(distribution[0]*k)
         numberVal = int(distribution[1]*k)
         numberTest = k - numberVal - numberTrain
+        precentOfAllDocs = float(k)/float(self.allDocsNum)
         for i in self.corpora:
             corpusSize, corpusNames = self.documentNames[i]
-            percentFromCorpus = float(corpusSize) / float(self.allDocsNum)
-            numFromCorpus = int(k * percentFromCorpus)
-
+            numFromCorpus = int(corpusSize* precentOfAllDocs)
             
             print(numFromCorpus)
-            print('CRAP', float(k)/float(self.allDocsNum))
 
         pass
 
