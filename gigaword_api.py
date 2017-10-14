@@ -54,6 +54,7 @@ class Gigaword:
             index = 0
             while counter < numFromCorpus:
                 doc = randomNames[index]
+                print(doc)
                 print(os.path.join(self.path,i,doc))
                 with gzip.open(os.path.join(self.path,i,doc),'rb') as f:
                     xml = '<root>' +  f.read() + '</root>'
