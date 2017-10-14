@@ -44,7 +44,10 @@ class Gigaword:
         for i in self.corpora:
             corpusSize, corpusNames = self.documentNames[i]
             percentFromCorpus = float(corpusSize) / float(self.allDocsNum)
-            print(percentFromCorpus)
+            numFromCorpus = int(k * percentFromCorpus)
+
+            
+            print(numFromCorpus)
 
         pass
 
