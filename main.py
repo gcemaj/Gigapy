@@ -1,7 +1,7 @@
 from gigaword_api import Gigaword
 
 def printToFile(name,sentences):
-    f=open('name,'w')
+    f=open(name,'w')
     for s in sentences:
         f.write(s+'\n')
     f.close()
