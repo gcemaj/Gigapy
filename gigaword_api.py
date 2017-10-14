@@ -54,11 +54,11 @@ class Gigaword:
             index = 0
             while counter < numFromCorpus:
                 doc = randomNames[index]
+                print(os.path.join(self.path,i,doc))
                 with gzip.open(os.path.join(self.path,i,doc),'rb') as f:
                     xml = '<root>' +  f.read() + '</root>'
                 try:
                     tree = etree.fromstring(xml)
-                    counter += 1
                     for i in tree.getchildren():  
                         gigaDoc = GigaDoc(i)
                         sentncesSize = len(gigaDoc.sentences)
@@ -73,9 +73,11 @@ class Gigaword:
                         trainSentences += randomSentences[:numberTrain]
                         valSentences += randomSentences[numberTrain:numberTrain+numberVal]
                         testSentences += randomSentences[numberTrain+numberVal:numberTrain+numberVal+numberTest]
-                        
+
+                    index+=1
+                    counter += 1
+
                 except:
-                    print('fuck')
                     index += 1
                     continue
 
