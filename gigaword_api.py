@@ -55,28 +55,28 @@ class Gigaword:
             while counter < numFromCorpus:
                 if index >= corpusSize : break
                 doc = randomNames[index]
-                with gzip.open(os.path.join(self.path,i,doc),'rb') as f:
-                    xml = '<root>' +  f.read() + '</root>'
                 try:
-                    tree = etree.fromstring(xml)
-                    for j in tree.getchildren():  
-                        gigaDoc = GigaDoc(j)
-                        sentncesSize = len(gigaDoc.sentences)
+                    with gzip.open(os.path.join(self.path,i,doc),'rb') as f:
+                        xml = '<root>' +  f.read() + '</root>'
+                    try:
+                        tree = etree.fromstring(xml)
+                        for j in tree.getchildren():  
+                            gigaDoc = GigaDoc(j)
+                            sentncesSize = len(gigaDoc.sentences)
 
-                        numberTrain = int(distribution[0]*sentncesSize)
-                        numberVal = int(distribution[1]*sentncesSize)
-                        numberTest = sentncesSize - numberVal - numberTrain
+                            numberTrain = int(distribution[0]*sentncesSize)
+                            numberVal = int(distribution[1]*sentncesSize)
+                            numberTest = sentncesSize - numberVal - numberTrain
 
-                        randomSentences = list(gigaDoc.sentences)
-                        random.shuffle(randomSentences)
+                            randomSentences = list(gigaDoc.sentences)
+                            random.shuffle(randomSentences)
 
-                        trainSentences += randomSentences[:numberTrain]
-                        valSentences += randomSentences[numberTrain:numberTrain+numberVal]
-                        testSentences += randomSentences[numberTrain+numberVal:numberTrain+numberVal+numberTest]
+                            trainSentences += randomSentences[:numberTrain]
+                            valSentences += randomSentences[numberTrain:numberTrain+numberVal]
+                            testSentences += randomSentences[numberTrain+numberVal:numberTrain+numberVal+numberTest]
 
-                    index+=1
-                    counter += 1
-
+                        index+=1
+                        counter += 1
                 except:
                     index += 1
                     continue
