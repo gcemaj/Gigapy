@@ -77,6 +77,9 @@ class Gigaword:
 
                         index+=1
                         counter += 1
+                    except:
+                        index += 1
+                        continue
                 except:
                     index += 1
                     continue
