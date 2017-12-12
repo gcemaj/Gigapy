@@ -28,7 +28,9 @@ class GigaDoc:
     def parseByTagName(self,name):
         result = ''
         for i in self.doc.iter(name):
-            result  += i.text
+            print(len(i.text))
+            if len(i.text) < 200:
+                result  += i.text
 
         result = result.replace('\n',' ')
         result = result.replace('\r','')
