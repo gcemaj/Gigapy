@@ -28,7 +28,7 @@ class GigaDoc:
     def parseByTagName(self,name):
         result = ''
         for i in self.doc.iter(name):
-            if len(i.text) >= 4 and len(i.text) < 200:
+            if len(i.text) >= 4 and len(i.text) < 500:
                 result  += i.text
             else:
                 print(i.text)
