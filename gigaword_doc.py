@@ -24,7 +24,6 @@ class GigaDoc:
         self.dateline = self.parseByTagName('DATELINE')
         self.text = self.parseText()
         self.sentences = self.parseSentences()
-        print(self.sentences)
 
     def parseByTagName(self,name):
         result = ''
@@ -40,7 +39,7 @@ class GigaDoc:
         return self.parseByTagName('P') if temp == '' else temp
 
     def parseSentences(self):
-        return sentenceTkzr.tokenize(self.text)
+        return [i for i in sentenceTkzr.tokenize(self.text) if len(i) >= 10 and len(i) <= 800]
 
 
 
