@@ -24,15 +24,12 @@ class GigaDoc:
         self.dateline = self.parseByTagName('DATELINE')
         self.text = self.parseText()
         self.sentences = self.parseSentences()
+        print(self.sentences)
 
     def parseByTagName(self,name):
         result = ''
         for i in self.doc.iter(name):
-            if len(i.text) >= 4 and len(i.text) < 500:
-                result  += i.text
-            else:
-                print(i.text)
-
+            result  += i.text
         result = result.replace('\n',' ')
         result = result.replace('\r','')
         result = result.strip()
